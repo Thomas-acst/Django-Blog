@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %} Post {% endblock %}
+
+{% block conteudo %}
+
+<form method="POST" action="{% url 'form_post' %}">
+    {% csrf_token %}
+
+    <br>
+    <div class="container text-center">
+    <div class="row">
+        <div class="col">
+        </div>
+        <div class="col-6">
+
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Título da Postagem:</label>
+                <input type="name" name=titulo class="form-control" id="exampleFormControlInput1">
+            </div>
+
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Conteúdo:</label>
+                <textarea class="form-control" name = conteudo id="exampleFormControlTextarea1" rows="5"></textarea>
+            </div>
+            <button type="submit" class="btn btn-success">POSTAR</button>
+
+        </div>
+        <div class="col">
+        </div>
+    </div>
+
+</form>
+
+    {% endblock %}

@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %} Home {% endblock %}
+
+{% block conteudo %}
+
+<body>
+    <br> 
+    <div style="position: relative; margin-bottom: 20px; margin-left: 40px;">
+        <a href="{% url 'botao_post' %}" class="btn btn-success">Criar Postagem</a>
+
+        <a href="{% url 'perfil' username=usuario.username %}" class="btn btn-primary">Acessar perfil</a>
+    </div>
+
+
+
+
+    <div style="text-align: center">
+        <h1>Publicações dos usuários</h1>
+    </div>
+    <br>
+    <table>
+        <div class="container">
+            <div class="row">
+                {% for post in todas_postagens %}
+                <br>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            {{ post.titulo }}
+                        </div>
+                        <div class="card-body">
+                            <blockquote class="blockquote mb-0">
+                                <p class="card-text"
+                                    style="max-height: 3.2em; overflow: hidden; text-overflow: ellipsis;">
+                                    {{ post.conteudo }} </p>
+                                <footer class="blockquote-footer"> {{ post.data_criacao }}
+                                </footer>
+                                <footer class="blockquote-footer"> {{post.autor}}
+                                </footer>
+                                <a href="{% url 'noticia_completa' post.id %}" class="btn btn-secondary">Ver notícia
+                                    completa</a>
+                            </blockquote>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+
+                {% endfor %}
+
+
+
+            </div>
+        </div>
+
+
+
+
+
+
+    </table>
+
+
+
+
+
+
+
+
+
+</body>
+
+<div style="position: relative; margin-bottom: 20px; margin-left: 40px;">
+    <a href="{% url 'deslogar' %}" class="btn btn-danger">Deslogar</a>
+</div>
+
+</html>
+
+{% endblock %}

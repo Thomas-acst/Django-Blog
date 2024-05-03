@@ -1,0 +1,38 @@
+django-admin startproject [nome do projeto] .
+
+python3 manage.py startapp [nome do projeto] 
+
+python3 manage.py makemigrations (nome do app)
+
+python3 manage.py migrate (nome do app)
+
+python3 manage.py createsuperuser
+
+removendo cache -->  python manage.py migrate --fake (nome do app) zero
+
+sudo fuser -k 8000/tcp -> Elimina todos os processos da porta 8000
+
+https://www.google.com/search?q=login+do+django+com+e-mail+e+senha&oq=Login+do+Django+com+e-mail+e+senh&gs_lcrp=EgZjaHJvbWUqBwgBECEYoAEyBggAEEUYOTIHCAEQIRigATIHCAIQIRigAdIBCDM1OTdqMGo3qAIAsAIA&sourceid=chrome&ie=UTF-8#fpstate=ive&ip=1&vld=cid:c140e9fc,vid:-0dHHJsoWuI,st:0 (para extender o model)
+
+IREI FAZER UM SITE BASE E DEPOIS IREI PESQUISAR PARTE POR PARTE (ADMIN, APPS, MODELS,...) 
+
+
+
+
+
+https://stackoverflow.com/questions/37332190/django-login-with-email
+https://docs.djangoproject.com/pt-br/5.0/topics/auth/customizing/#authorization-methods
+https://www.google.com/search?q=AttributeError%3A+type+object+%27Info_User%27+has+no+attribute+%27USERNAME_FIELD%27&oq=AttributeError%3A+type+object+%27Info_User%27+has+no+attribute+%27USERNAME_FIELD%27&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIGCAEQRRg60gEHNTA5ajBqNKgCALACAA&sourceid=chrome&ie=UTF-8
+https://www.google.com/search?q=omo+extender+o+USer+do+django&oq=omo+extender+o+USer+do+django&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIJCAEQIRgKGKABMgkIAhAhGAoYoAEyCQgDECEYChigATIJCAQQIRgKGKAB0gEINTU2MGowajeoAgCwAgA&sourceid=chrome&ie=UTF-8
+
+
+------------------------
+Thomás Alves Costa
+25/01/2005
+thomas.acst@gmail.com
+TomTom
+123456789
+------------------------
+
+
+

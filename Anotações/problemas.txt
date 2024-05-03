@@ -1,0 +1,15 @@
+
+Pontos fracos do projeo
+
+- Problema login
+- Fazer a página principal ser a home
+- Melhorar design das páginas notícias adicionando botão
+
+
+
+PONTOS FRACOS da Aprendizagem
+
+- Autenticação -> Achei inúeros modos, somente com nome de usuário e senha, porém como queria
+                  fazer email e senha fui indicado a externder o User Model do django.
+                  Porém também pode ser feito a autenticação pelo allauth
+                  

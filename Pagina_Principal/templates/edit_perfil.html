@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %} Editando Perfil {% endblock %}
+
+{% block conteudo %}
+
+
+<form method="POST" action="{% url 'editar_perfil' username=usuario.username %}">
+    {% csrf_token %}
+
+    <div style="margin-top: 50px; margin-bottom: 50px; margin-left: 50px; margin-right: 50px;">
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Nome</label>
+            <input type="name" name="nome" class="form-control" id="exampleFormControlInput1" value="{{usuario.username}}">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Email</label>
+            <input type="email" name="email" class="form-control" id="exampleFormControlInput1" value="{{usuario.email}}">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Apelido</label>
+            <input type="name" name="apelido" class="form-control" id="exampleFormControlInput1" value="{{usuario.nickname}}">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Nascimento</label>
+            <input type="date" name="nascimento" class="form-control" id="exampleFormControlInput1" value="{{usuario.nascimento}}">
+        </div>
+        <button type="submit" class="btn btn-success">SALVAR ALTERAÇÕES </button>
+    </div>
+</form>
+
+<div style="margin-top: 10px; margin-bottom: 50px; margin-left: 50px; margin-right: 50px;">
+    <a href="{% url 'perfil' username=usuario.username %}" class="btn btn-secondary">DISCARTAR ALTERAÇÕES</a>
+</div>
+
+{% endblock %}

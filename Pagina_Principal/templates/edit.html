@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %} Home {% endblock %}
+
+{% block conteudo %}
+
+<form method="POST" action="{% url 'editar_post' id=post.id %}">
+    {% csrf_token %}
+
+    <br>
+    <div class="container text-center">
+        <div class="row">
+            <div class="col">
+            </div>
+            <div class="col-6">
+
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Título da Postagem:</label>
+                    <input type="name" name=novo_titulo class="form-control" id="exampleFormControlInput1"
+                        value="{{ post.titulo }}">
+                </div>
+
+                <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">Conteúdo:</label>
+                    <textarea class="form-control" name="novo_conteudo" id="exampleFormControlTextarea1"
+                        rows="5">{{ post.conteudo }}</textarea>
+                </div>
+                <a href="{% url 'perfil' username=usuario.username %}" class="btn btn-danger">VOLTAR AO PERFIL</a>
+                <button type="submit" class="btn btn-success">SALVAR</button>
+            </div>
+
+            <div class="col">
+
+            </div>
+
+        </div>
+
+</form>
+
+
+{% endblock %}

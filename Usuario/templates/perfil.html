@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block title %} Página do Usuário {% endblock %}
+
+{% block conteudo %}
+<br>
+
+<div class="container text-left">
+    <h2>Olá {{ usuario.nickname }}</h2>
+    <br>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card mb-2" style="width: 30rem;">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Nome: {{ usuario.username }}</li>
+                    <li class="list-group-item">Apelido: {{ usuario.nickname }}</li>
+                    <li class="list-group-item">Ano de Nascimento: {{ usuario.nascimento }}</li>
+                    <li class="list-group-item"><a href="{% url 'editar_perfil' username=usuario.username %}"
+                            class="btn btn-warning">EDITAR PERFIL</a></li>
+                    <li class="list-group-item"><a href="{% url 'home' username=usuario.username %}"
+                            class="btn btn-primary">PAGINA PRINCIPAL</a> </li>
+
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md-6 pl-2" style="max-height: 400px; overflow-y: auto;">
+            <h2 class="text-center">Postagens feitas por você:</h2>
+            <br>
+            <div class="text-center">
+                {% for postagem in postagens %}
+                <div class="col-md-9 d-inline-block">
+                    <div class="card">
+                        <div class="card-header">
+                            {{ postagem.titulo }}
+                        </div>
+                        <div class="card-body">
+                            <blockquote class="blockquote mb-0">
+                                <p class="card-text"
+                                    style="max-height: 3.2em; overflow: hidden; text-overflow: ellipsis;">
+                                    {{ postagem.conteudo }} </p>
+                                <footer class="blockquote-footer"> {{ postagem.data_criacao }}
+                                </footer>
+                                <footer class="blockquote-footer"> {{postagem.autor}}
+                                </footer>
+                                <a href="{% url 'editar_post' id=postagem.id %}" class="btn btn-primary">EDITAR
+                                    POSTAGEM</a>
+
+                                <br><br>
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal">
+                                    EXCLUIR POSTAGEM
+                                </button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Certeza?</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Após confirmar a exclusão, não será mais possível ver esta postagem, nem
+                                                você, nem outros usuários.
+                                            </div>
+                                            <div class="modal-footer">
+                                                <form method="POST" action="{% url 'excluir_post' id=postagem.id %}">
+                                                    {% csrf_token %}
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">DISCARTAR</button>
+                                                    <button type="submit" class="btn btn-danger">CONFIRMAR
+                                                        EXCLUSÃO</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+                                    </footer>
+                            </blockquote>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

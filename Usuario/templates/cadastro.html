@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %} Cadastro de Usuário {% endblock %}
+
+{% block conteudo %}
+
+<body>
+    <br>
+    <div class="container text-center">
+        <div class="row">
+            <div class="col">
+            </div>
+            <div class="col">
+                <form method="POST" action="{% url 'valida_cadastro' %}">
+                    {% csrf_token %}
+
+                    {% if messages %}
+                        {% for message in messages %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ message }}
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+
+                    <div style="text-align: left;" class="mb-3">
+                        <label for="exampleInputName" class="form-label">Nome completo:</label>
+                        <input type="name" class="form-control" id="nome" name="username">
+                    </div>
+
+
+                    <div style="text-align: left;" class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Apelido:</label>
+                        <input type="name" class="form-control" id="nickname" name="nickname">
+                    </div>
+
+                    <div style="text-align: left;" class="mb-3">
+                        <label for="exampleInputdate" class="form-label">Data de Nascimento:</label>
+                        <input type="date" class="form-control" id="date" name="data">
+                    </div>
+
+                    <div style="text-align: left;" class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Email:</label>
+                        <input type="email" class="form-control" id="email" name="email">
+                    </div>
+
+                    <div style="text-align: left;" class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Senha</label>
+                        <input type="password" class="form-control" id="password" name="senha">
+                    </div>
+                    <button type="submit" class="btn btn-success">CADASTRAR</button>
+                    <br><br>
+
+                </form>
+                <a href="{% url 'login' %}" class="btn btn-primary">JÁ TEM UMA CONTA? LOGAR</a>
+                <br><br>
+            </div>
+            <div class="col">
+
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+</html>
+ 
+{% endblock %}

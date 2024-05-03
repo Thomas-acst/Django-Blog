@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %} Home {% endblock %}
+
+{% block conteudo %}
+
+<figure class="text-center">
+    <br>
+    <blockquote class="blockquote">
+        <h1>{{ noticia.titulo }}</h1>
+    </blockquote>
+    <figcaption class="blockquote-footer">
+        Autor: <cite title="Source Title"> {{ noticia.autor }}</cite>
+    </figcaption>
+</figure>
+
+<br>
+
+<p> {{ noticia.conteudo }} </p>
+
+<br>
+
+
+
+{% endblock %}
