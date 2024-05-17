@@ -11,5 +11,7 @@ PONTOS FRACOS da Aprendizagem
 
 - Autenticação -> Achei inúeros modos, somente com nome de usuário e senha, porém como queria
                   fazer email e senha fui indicado a externder o User Model do django.
-                  Porém também pode ser feito a autenticação pelo allauth
+                  Porém também pode ser feito a autenticação pelo allauth.
+                  Acredito também que por eu estar usando o um model herdando de AbstractUser
+                  ele só aceite que pegue a senha como set_password.
                   

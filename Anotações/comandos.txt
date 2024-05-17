@@ -26,13 +26,3 @@ https://www.google.com/search?q=AttributeError%3A+type+object+%27Info_User%27+ha
 https://www.google.com/search?q=omo+extender+o+USer+do+django&oq=omo+extender+o+USer+do+django&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIJCAEQIRgKGKABMgkIAhAhGAoYoAEyCQgDECEYChigATIJCAQQIRgKGKAB0gEINTU2MGowajeoAgCwAgA&sourceid=chrome&ie=UTF-8
 
 
-------------------------
-Thomás Alves Costa
-25/01/2005
-thomas.acst@gmail.com
-TomTom
-123456789
-------------------------
-
-
-

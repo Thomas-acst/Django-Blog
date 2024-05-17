@@ -10,6 +10,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from datetime import *
 import hashlib
+from django.contrib.auth.models import AnonymousUser
 
 
 def cad(request):
@@ -30,7 +31,7 @@ def valida_cadastro(request):
     usuario.nickname = request.POST.get('nickname')
     usuario.nascimento = request.POST.get('data')
     usuario.email = request.POST.get('email')
-    senha = request.POST.get('senha')
+    usuario.set_password(request.POST.get('senha'))
 
     padrao_email = r'([\w\.\-@])*(@gmail.com|\@hotmail.com|\@yahoo.com|\@icloud.com|\@edu.br|gov.br)'
     ano_hoje = date.today().year
@@ -62,14 +63,14 @@ def valida_cadastro(request):
         return redirect('cadastro')
 
     # validando senha
-    if len(senha) == 0:
-        messages.error(request, "Você não preencheu sua senha!")
-        return redirect('cadastro')
+    # if len(senha) == 0:
+    #     messages.error(request, "Você não preencheu sua senha!")
+    #     return redirect('cadastro')
 
-    if len(senha) == 0 or len(usuario.email.strip()) == 0 or len(usuario.username.strip()) == 0 or len(usuario.nickname.strip()) == 0:
-        messages.error(
-            request, "Você tentou colocar espaço para indicar caractere né?")
-        return redirect('cadastro')
+    # if len(senha) == 0 or len(usuario.email.strip()) == 0 or len(usuario.username.strip()) == 0 or len(usuario.nickname.strip()) == 0:
+    #     messages.error(
+    #         request, "Você tentou colocar espaço para indicar caractere né?")
+    #     return redirect('cadastro')
 
     if Info_User.objects.filter(username=usuario.username):
         messages.error(request, 'Nome já cadastrado!')
@@ -81,10 +82,10 @@ def valida_cadastro(request):
         messages.error(request, 'Apelido já cadastrado!')
         return redirect('cadastro')
     # Para verificação usei este site: https://www.w3schools.com/django/django_queryset_filter.php
-    senha_codificada = senha
-    usuario.password = senha_codificada
-    '''    senha_codificada = hashlib.sha256(senha.encode()).hexdigest()
-           usuario.password = senha_codificada  '''
+    # senha_codificada = senha
+    # usuario.password = senha_codificada
+    # '''    senha_codificada = hashlib.sha256(senha.encode()).hexdigest()
+    #        usuario.password = senha_codificada  '''
     usuario.save()
     return render(request, "login.html")  # menssagem aqui
 
@@ -92,39 +93,55 @@ def valida_cadastro(request):
 
 
 def valida_login(request):
+    usuario = Info_User()
+    if request.method == 'POST':
+        usuario.username = request.POST.get('username')
+        usuario.email = request.POST.get('email')
+        usuario.senha = request.POST.get('senha')
 
-    username = request.POST.get('username')
-    email = request.POST.get('email')
-    senha = request.POST.get('senha')
-
-
-    # validando nome
-    if len(username) == 0:
-        messages.error(request, "Você não preencheu seu nome!")
-        return redirect('login')
-    # validando email
-    if len(email) == 0:
-        messages.error(request, "Você não preencheu seu email!")
-        return redirect('login')
-    # validando senha
-    if len(senha) == 0:
-        messages.error(request, "Você não preencheu sua senha!")
-        return redirect('login')
-
-    print("Dados recebidos:", username, email, senha)
-
-    user = authenticate(request, username=username,
-                        email=email, password=senha)
-    print("Usuário autenticado:", user)
-
-    if user:
+        user = authenticate(username=usuario.username,
+                            email=usuario.email, password=usuario.senha)
         login(request, user)
-        messages.success(request, "Logado!")
-        return redirect('perfil', username=user.username)
+        print("Usuário autenticado:", user)
+        return redirect('perfil', username=usuario.username)
 
+
+'''    if request.method == 'POST':
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        senha = request.POST.get('senha')
+
+        # validando nome
+        if len(username) == 0:
+            messages.error(request, "Você não preencheu seu nome!")
+            return redirect('login')
+        # validando email
+        if len(email) == 0:
+            messages.error(request, "Você não preencheu seu email!")
+            return redirect('login')
+        # validando senha
+        if len(senha) == 0:
+            messages.error(request, "Você não preencheu sua senha!")
+            return redirect('login')
+
+        print("Dados recebidos:", username, email, senha)
+
+        user = authenticate(request, username=username,
+                            email=email, password=senha)
+        if isinstance(user, AnonymousUser):
+            # Se o usuário for anônimo, significa que a autenticação falhou
+            messages.error(request, "Email e/ou senha inválidos!")
+            return redirect('login')
+
+        # if user is not None:
+        login(request, user)
+        print("Usuário autenticado:", user)
+        return redirect('perfil', username=username)
+        # else:
+        #    messages.error(request, "Email e/ou senha inválidos!")
+        #    return redirect('login')
     else:
-        messages.error(request, "Email e/ou senha inválidos!")
-        return redirect('login')
+        return redirect('login')'''
 
 
 @ login_required
